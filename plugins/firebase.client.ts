@@ -17,6 +17,12 @@ export default defineNuxtPlugin(() => {
     appId: runtimeConfig.public.FIREBASE_APP_ID
   }
 
+  // Debug logging - check what values are being used
+  console.log('Firebase config (API key partially redacted):', {
+    ...firebaseConfig,
+    apiKey: firebaseConfig.apiKey ? `${firebaseConfig.apiKey.substring(0, 5)}...` : 'undefined or empty'
+  })
+
   try {
     const firebaseApp = initializeApp(firebaseConfig)
     const firestore = getFirestore(firebaseApp)
